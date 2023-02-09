@@ -31,4 +31,12 @@ export class InoutService {
   async remove(id: string): Promise<void> {
     await this.inoutRepository.delete(id);
   }
+
+  getOneMaximumQuotationVersion() {
+    const result = this.inoutRepository.createQueryBuilder('inout')
+      .where("inout.ticket = :ticket", { ticket: "T20220010" })
+      .getMany();
+    // result.where("inout.ticket = :id", { ticket: "001" })
+    return result;
+  }
 }

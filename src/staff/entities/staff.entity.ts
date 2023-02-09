@@ -39,7 +39,7 @@ export class Staff {
   birthday: Date;
 
   @Column({ length: 50, nullable: true })
-  status: string;
+  staff_status: string;
 
   @Column()
   role_id: number;

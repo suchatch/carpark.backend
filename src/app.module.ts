@@ -7,17 +7,21 @@ import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config';
 import { InoutModule } from './inout/inout.module';
+import { BranchModule } from './branch/branch.module';
+import { BuildingModule } from './building/building.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: [`.env.stage.${process.env.STAGE}`],
+      envFilePath: [`.env.stage.dev`],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
+        // socketPath: '/var/run/mysqld/mysqld.sock',
         host: configService.get('DB_HOST'),
         port: +configService.get('DB_PORT'),
         username: configService.get('DB_USERNAME'),
@@ -36,6 +40,9 @@ import { InoutModule } from './inout/inout.module';
     }),
     StaffModule,
     InoutModule,
+    BranchModule,
+    BuildingModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

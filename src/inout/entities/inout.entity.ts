@@ -50,13 +50,13 @@ export class Inout {
   @Column({ nullable: true, default: null })
   receipt_type_id: number;
 
-  @Column({ nullable: true, default: null })
+  @Column({ type: 'decimal', nullable: true, default: null })
   receipt_total: number;
 
-  @Column({ nullable: true, default: null })
+  @Column({ type: 'decimal', nullable: true, default: null })
   receipt_total_pay: number;
 
-  @Column({ nullable: true, default: null })
+  @Column({ type: 'decimal', nullable: true, default: null })
   receipt_vat: number;
 
   @Column({ nullable: true, default: null })
